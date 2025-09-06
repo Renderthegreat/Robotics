@@ -4,11 +4,11 @@ plugins {
 
 repositories {
 	mavenCentral();
+	google();
 };
 
 dependencies {
-	implementation 'io.ably:ably-java:1.3.0';
-	implementation 'org.slf4j:slf4j-simple:2.0.7';
+
 };
 
 sourceSets {
