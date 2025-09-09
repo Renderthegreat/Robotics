@@ -2,13 +2,12 @@ plugins {
 	id 'java';
 };
 
+apply from: 'build.dependencies.gradle';
+
+
 repositories {
 	mavenCentral();
 	google();
-};
-
-dependencies {
-
 };
 
 sourceSets {

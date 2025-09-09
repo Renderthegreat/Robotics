@@ -1,0 +1,4 @@
+dependencies {
+	// FTC
+	implementation files("libs/RobotCore.jar");
+};
