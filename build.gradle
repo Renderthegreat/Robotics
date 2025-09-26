@@ -2,18 +2,37 @@ plugins {
 	id 'java';
 };
 
-apply from: 'build.dependencies.gradle';
-
-
 repositories {
 	mavenCentral();
 	google();
 };
 
-sourceSets {
-	main {
-		java {
-			srcDirs = ['src']
-		};
+apply from: 'build.dependencies.gradle';
+
+task printClassPath {
+	doLast {
+		println sourceSets.main.runtimeClasspath.asPath;
 	};
+};
+
+task printMockitoAgentPath {
+	doLast {
+		def mockitoInlineJar = project.configurations.testRuntimeClasspath.find { file ->
+            file.name.contains('mockito-inline');
+        };
+		println mockitoInlineJar;
+	};
+};
+
+task testJar(type: Jar) {
+    archiveClassifier.set('tests');
+    from sourceSets.test.output;
+};
+
+configurations {
+	mockitoAgent;
+};
+
+artifacts {
+	archives testJar
 };
